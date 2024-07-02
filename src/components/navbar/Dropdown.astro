@@ -1,0 +1,67 @@
+---
+import { Dropdown as DropdownContainer, DropdownItems } from "astro-navbar";
+const { title, lastItem, children } = Astro.props;
+---
+
+<li class="relative">
+  <DropdownContainer class="group">
+    <button
+      class="flex border-b whitespace-nowrap justify-between xl:justify-start xl:border-none pl-4 items-center gap-1 w-full xl:w-auto xl:py-2 text-gray-600 hover:text-gray-900"
+    >
+      <span>{title}</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="3"
+        stroke="currentColor"
+        class="w-3 h-3 mt-0.5 group-open:rotate-180 xl:block hidden"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+      </svg>
+      <div class="px-7 py-6 md:py-7 xl:hidden flex bg-primaryShade">
+        <svg
+          width="13"
+          class="flex xl:hidden text-primary h-4 bg-primaryShade"
+          height="21"
+          viewBox="0 0 13 21"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          data-testid=""
+          role="presentation"
+          ><path
+            d="M12.3594 11.0592C12.5938 10.8717 12.7344 10.5905 12.7344 10.2623C12.7344 9.98108 12.5938 9.69983 12.3594 9.46545L3.26562 0.371704C3.03125 0.184204 2.75 0.0435791 2.46875 0.0435791C2.14062 0.0435791 1.85938 0.184204 1.67188 0.371704L0.640625 1.40295C0.40625 1.63733 0.265625 1.91858 0.265625 2.19983C0.265625 2.52795 0.359375 2.8092 0.59375 2.9967L7.85938 10.2623L0.59375 17.528C0.359375 17.7623 0.265625 18.0436 0.265625 18.3248C0.265625 18.653 0.40625 18.9342 0.640625 19.1217L1.67188 20.153C1.85938 20.3873 2.14062 20.4811 2.46875 20.4811C2.75 20.4811 3.03125 20.3873 3.26562 20.153L12.3594 11.0592Z"
+            fill="currentColor"></path></svg
+        >
+      </div>
+    </button>
+    <DropdownItems>
+      <div
+        class:list={[
+          "xl:absolute w-full xl:w-48 z-10 lg:top-12 lg:left-3",
+          lastItem
+            ? "xl:right-3 origin-top-right"
+            : "xl:left-3 origin-top-left",
+        ]}
+      >
+        <div
+          class="px-4 xl:py-4 xl:bg-white xl:rounded-md xl:shadow xl:border flex flex-col"
+        >
+          {
+            children.map((item: any) => (
+              <a
+                href={item.link}
+                class="py-1 text-gray-600 hover:text-gray-900"
+              >
+                {item.title}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </DropdownItems>
+  </DropdownContainer>
+</li>

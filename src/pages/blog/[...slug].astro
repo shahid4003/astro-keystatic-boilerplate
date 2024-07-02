@@ -1,0 +1,47 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { createReader } from "@keystatic/core/reader";
+import keystaticConfig from "../../../keystatic.config";
+import { getEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import TOC from "../../components/BlogTableOfContent.astro"
+export async function getStaticPaths() {
+  const reader = createReader(process.cwd(), keystaticConfig);
+  const blogs = await reader.collections.blogs.all();
+  return blogs.map(({ slug, entry }) => {
+    return {
+      params: { slug },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+const { slug } = Astro.params;
+
+const blogEntry = await getEntry("blogs", slug);
+const renderer = blogEntry && (await blogEntry.render());
+const headings = renderer?.headings || [];
+const Content = renderer?.Content || (() => null);
+---
+
+<Layout title="sdf" description="dffd">
+
+  <section
+    class="prose prose-a:text-helper prose-headings:text-primary prose-table:border prose-td:py-4 prose-td:pl-4 prose-th:py-4 prose-th:pl-4 pt-0 max-w-[75rem]  mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 lg:gap-1 xl:gap-6 xl:px-0 lg:relative"
+  >
+    <div
+      class="col-span-12 lg:col-start-10 lg:hidden block lg:col-span-3 lg:h-max"
+    >
+      <TOC headings={headings} />
+    </div>
+    <div class="col-span-12 lg:col-start-1 lg:col-span-8 lg:row-start-1">
+      <Content />
+    </div>
+    <div
+      class="col-span-12 lg:col-start-10 lg:block hidden lg:col-span-3 lg:h-max"
+    >
+      <TOC headings={headings} />
+    </div>
+  </section>
+</Layout>

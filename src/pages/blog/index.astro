@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+const posts = await getCollection("blogs");
+const postsByDate = posts.sort((a, b) => b.data.pubDate - a.data.pubDate);
+const blogtitle = "Blog - Vault Moving & Portable Storage";
+
+---
+
+<Layout title={blogtitle} >
+  <h1 class="custom-container mx-auto text-black text-5xl font-bold ">Blog</h1>
+  <section>
+    <ul class="custom-container py-10 mx-auto font-raleway">
+      {
+        postsByDate.map((post) => (
+          <li class="[&:not(:first-child)]:pt-20">
+            <a href={`/blog/${post.slug}/`}>
+              <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+              <p class="line-clamp-4 mb-6">{post.data.description}</p>
+              <a
+                href={`/blog/${post.slug}`}
+                class=" bg-primary text-white text-lg py-3 px-4 rounded-lg"
+              >
+              </a>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

@@ -1,0 +1,40 @@
+logo: /images/logo.png
+subtitle: WE ARE PROUD OF OUR REVIEWS!
+Ratingdescription: 4.5 STARS ON
+nav:
+  - title: Providers
+    children:
+      - title: All Providers
+        link: /providers
+      - title: TXU Energy
+        link: '#'
+      - title: Constellation
+        link: '#'
+      - title: Gexa
+        link: '#'
+      - title: Pulse Power
+        link: '#'
+  - title: Markets
+    children:
+      - title: Texas
+        link: '#'
+  - title: Business
+    children:
+      - title: Small Business Energy Rates
+        link: '#'
+      - title: Large Business Energy Rates
+        link: '#'
+  - title: About Electricity Match
+    children:
+      - title: About Us
+        link: '#'
+      - title: Media & Press
+        link: '#'
+      - title: Reviews
+        link: '#'
+      - title: Power to Choose Texas
+        link: '#'
+  - title: Blog
+    children:
+      - title: Our Blogs
+        link: /blogs

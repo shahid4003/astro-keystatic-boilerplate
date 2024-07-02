@@ -1,0 +1,21 @@
+---
+interface Props {
+	title: string;
+	description:string;
+	ogImage?:string;
+}
+import "../styles/global.css"
+import Navbar from "../components/navbar/Navbar.astro"
+const { title,description ,ogImage} = Astro.props;
+import BaseHead from "../components/BaseHead.astro";
+import '@fontsource/poppins';
+---
+
+<!doctype html>
+<html lang="en">
+	<BaseHead title={title} description={description} image={ogImage} />
+	<body>
+		<Navbar/>
+		<slot />
+	</body>
+</html>

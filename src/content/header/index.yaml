@@ -1,0 +1,60 @@
+headerLogo: /images/headerLogo.svg
+subtitle: WE ARE PROUD OF OUR REVIEWS!
+Ratingdescription: 4.5 STARS ON
+nav:
+  - title: Providers
+    children:
+      - title: All Providers
+        link: /providers
+      - title: 4 Change Energy
+        link: /providers/4-change-energy
+      - title: Constellation
+        link: /providers/constellation
+      - title: APG&E
+        link: /providers/apg-and-e
+      - title: Payless Power
+        link: /providers/payless-power
+      - title: Rhythm
+        link: /providers/rhythm
+  - title: Markets
+    children:
+      - title: Texas
+        link: /texas
+      - title: Dallas
+        link: /texas/dallas
+      - title: Fort Worth
+        link: /texas/fort-worth
+      - title: Houston
+        link: /texas/houston
+      - title: Plano
+        link: /texas/plano
+      - title: Waco
+        link: /texas/waco
+      - title: Tyler
+        link: /texas/tyler
+  - title: Business
+    children:
+      - title: Small Business Energy Rates
+        link: /small-business-energy-rates
+      - title: Large Business Energy Rates
+        link: /large-business-energy-rates
+  - title: About
+    children:
+      - title: About Electricity Match
+        link: /about
+      - title: Ben From Electricity Match
+        link: ben-from-electricity-match
+      - title: About-ben
+        link: /about-ben
+      - title: Media and Press
+        link: /media-and-press
+      - title: Reviews
+        link: /reviews
+      - title: Power to Choose Texas
+        link: /power-to-choose-texas
+  - title: Blogs
+    link: /blogs
+    children: []
+  - title: Faqs
+    link: /faqs
+    children: []

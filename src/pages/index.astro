@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { createReader } from "@keystatic/core/reader";
+import keystaticConfig from "../../keystatic.config";
+const reader = createReader(process.cwd(), keystaticConfig);
+const homePage = await reader.collections.Pages.read("home");
+import BlogCard from "../components/BlogCard.astro";
+import { getBlockValueByDiscriminant } from "../utils/getBlockValue";
+import { getCollection } from "astro:content";
+const posts = await getCollection("blogs");
+console.log(posts[0]);
+---
+
+<Layout title="Welcome to Astro." description="">
+  <h1 class="custom-container text-black text-5xl font-bold py-32">
+    Blogs with headings
+  </h1>
+  <section>
+    <ul class="custom-container py-20 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          posts.map((post) => (
+            <a href={`/blog/${post.slug}/`}>
+              <BlogCard
+                blogimage={post.data.blogimage}
+                title={post.data.title}
+                button={post.data.button}
+              />
+            </a>
+          ))
+        }
+      </div>
+    </ul>
+  </section>
+</Layout>

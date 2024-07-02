@@ -1,0 +1,14 @@
+title: home
+seoData: {}
+blocks:
+  - discriminant: BlogCard
+    value:
+      blogimage: /images/home/blocks/0/value/blogimage.jpeg
+      title: The Benefits of Using Mobile Storage Units
+      description: >-
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris 
+      button:
+        title: read more
+        link: /
