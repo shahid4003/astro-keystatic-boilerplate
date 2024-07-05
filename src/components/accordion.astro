@@ -1,0 +1,70 @@
+---
+const { block } = Astro.props;
+
+const clickable = (item: any) => {
+  return item.answer.replace(
+    /Click here/g,
+    `<a href="${item.link}" class="text-primary underline">Click here</a>`
+  );
+};
+---
+
+<section class="mx-auto my-10 py-10 w-1/2">
+  {
+    block.faqs.map((item: any) => (
+      <div class="accordion-item  mb-5">
+        <div class="accordion-header bg-[#F2F2F2] hover:bg-secondary hover:text-white cursor-pointer flex items-center justify-between px-[25px] py-[15px] font-body font-bold  duration-200 ease-out text-base rounded-lg">
+                    {item.question}
+                    
+          <span class="accordion-icon inline-block rotate-0 duration-200 ease-out">
+                        
+            <i class="fa-solid fa-chevron-down accordion-icon" />
+                      
+          </span>
+                  
+        </div>
+                
+        <div class="accordion-content  h-0 overflow-hidden  px-[25px] duration-200 ease-out">
+                    
+          <div class=" text-base font-body font-normal  py-[15px]">
+                        
+            <p set:html={item.link ? clickable(item) : item.answer} />
+                      
+          </div>
+                  
+        </div>
+              
+      </div>
+    ))
+  }
+</section>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const accordionItems = document.querySelectorAll(".accordion-item");
+
+    accordionItems.forEach((item) => {
+      const header = item.querySelector(".accordion-header");
+      const content = item.querySelector(".accordion-content");
+
+      header.addEventListener("click", () => {
+        // close other items
+        accordionItems.forEach((otherItem) => {
+          if (otherItem !== item && otherItem.classList.contains("active")) {
+            otherItem.classList.remove("active");
+            const otherContent = otherItem.querySelector(".accordion-content");
+            otherContent.style.height = "0";
+          }
+        });
+
+        item.classList.toggle("active");
+
+        if (item.classList.contains("active")) {
+          content.style.height = `${content.scrollHeight}px`;
+        } else {
+          content.style.height = "0";
+        }
+      });
+    });
+  });
+</script>
