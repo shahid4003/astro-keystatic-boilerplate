@@ -1,0 +1,107 @@
+---
+const tabs = [
+  {
+    id: 1,
+    title: 'Tab 1',
+    content:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi facilis ratione, tempora alias quisquam quos fugiat mollitia commodi praesentium sapiente?',
+  },
+  {
+    id: 2,
+    title: 'Tab 2',
+    content:
+      '  Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur dolores delectus eos similique commodi at tempore, autem alias deleniti voluptatum eius architecto quas sapiente! Praesentium nemo et nesciunt fugiat?',
+  },
+  {
+    id: 3,
+    title: 'Tab 3',
+    content:
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione omnis eum quasi, rem officia earum dolore exercitationem minus placeat quas quisquam, escsst nesciunt quidem tempora harum recusandae, hic vero repudiandae!',
+  },
+]
+---
+
+<div class="max-w-7xl mx-auto px-6 sm:px-12 pb-12">
+  <div>
+    <!-- Tabs -->
+    <div
+      role="tablist"
+      aria-label="tabs"
+      class="relative flex items-start overflow-hidden mt-8 transition"
+    >
+      {
+        tabs.map((tab, index) => (
+          <button
+            role="tab"
+            aria-selected={index === 0 ? 'true' : 'false'}
+            aria-controls={`tabpanel-${tab.id}`}
+            id={`tab-${tab.id}`}
+            class={`relative block px-6 py-2 tab  ${
+              index === 0 ? 'active' : ''
+            }`}
+          >
+            <span class="font-bold whitespace-nowrap">{tab.title}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Tab Panels -->
+    <div class="h-auto relative">
+      {
+        tabs.map((tab, index) => (
+          <div
+            role="tabpanel"
+            id={`tabpanel-${tab.id}`}
+            aria-labelledby={`tab-${tab.id}`}
+            class={`tab-panel pt-6 space-y-4 border p-4 rounded-xl overflow-hidden transition duration-300 ${
+              index === 0 ? 'flex ' : 'hidden '
+            }`}
+          >
+            {tab.content}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .tab {
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  .tab.active {
+    @apply border border-b-0 rounded  bg-red-700 text-white;
+  }
+
+  .tab-panel {
+    transition: opacity 0.3s ease-in-out;
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll('.tab')
+  const panels = document.querySelectorAll('.tab-panel')
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      // Set active tab
+      tabs.forEach((t) => t.classList.remove('active'))
+      tab.classList.add('active')
+
+      // Show corresponding panel
+      panels.forEach((panel, panelIndex) => {
+        if (index === panelIndex) {
+          panel.classList.remove('hidden')
+          panel.classList.add('flex')
+        } else {
+          panel.classList.add('hidden')
+          panel.classList.remove('flex')
+        }
+      })
+    })
+  })
+</script>
